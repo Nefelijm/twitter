@@ -8,10 +8,12 @@ window.onload = function() {
   var contenedor = document.querySelector('.visualizando');
   var texto = document.formulario.text.value;
     contenedor.innerHTML = texto
-    if
-
-    texto = document.getElementsByName('text').value;
-if( texto == null ) {
-  return alert('ingrese texto porfavor');
-}
+  if (texto == 0) {
+  alert("ingresa un texto ");
+    }
   }
+
+var accountant = document.formulario.area
+    accountant.addEventListener("keydown", function(event) {
+      document.getElementById("contadorNumeros").innerHTML = accountant.value.length;
+    });
