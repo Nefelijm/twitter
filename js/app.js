@@ -1,53 +1,73 @@
-//El evento va cargar cuando el obejeto haya cargado
+// el evento va a cargar cuando el objeto haya cargado
 window.onload = function() {
-  //obteniendo el input con el id
- var one = document.getElementById('button'),
- //Agregamos el evento click al input y la funcion a realizarce
- two = one.addEventListener('click',visualizing);
-}
-//Creando la funcion que se dara al realizar el evento
- function  visualizing(event) {
-//obteniendo el div donde se vizualizara el twitter con una clase
-  var container = document.querySelector('.visualizando');
-//obteniendo el valor de la etiqueta texarea con un id
-  var content = document.formulario.area.value;
-//al div donde se visualizara le agregaremos el contenido que obtutivimos del textarea
-    container.innerHTML = content
-//validando que no ingrese vacio, ni espacios en blanco
-  if (content == 0) {
-      document.getElementById('button').disabled = true;
-      alert('Ingrese un texto porfavor')
-    }
-    else {
-    document.getElementById('button').disable = true;
+  var boton = document.getElementById('button');
+  var texArea = document.getElementById('area');
+  var visualizando = document.getElementById('visualizando');
+  
+
+  texArea.addEventListener('input', agregando);
+  function agregando() {
+    if (texArea.value === '') {
+      boton.setAttribute('disabled', 'disabled');
+     
+    } else {
+      boton.removeAttribute('disabled');
+      boton.style.background = 'green'; 
+      
+                    
     }
   }
 
-// object.addEventListener("load", myScript);
-  var tweet = document.formulario.area;
-  tweet.addEventListener("keydown",function(){
-  document.getElementById("contador").innerHTML = tweet.value.length;
-     var limite = 140;
-      var colorazul = 120;
-      var coloramarillo = 130;
-      var newtweet = tweet.value.length
-      var azulNegro = document.getElementById('contador')
-      var boton = document.getElementById('button')
-      if (newtweet > limite) {
-        azulNegro.style.background = 'green';
-        boton.disabled = true;
-      }
-      else if (newtweet > coloramarillo) {
-        azulNegro.style.background = 'yellow';
-        boton.disabled = true;
+  boton.addEventListener('click', pasar); 
+  function pasar() {
+    var creandodiv = document.createElement("div");
+    creandodiv.innerHTML = texArea.value;
+    visualizando.appendChild(creandodiv).classList.add("color");  
+    texArea.value = '';
+    boton.setAttribute('disabled', 'disabled');
+        
+  }
+ 
+  texArea.addEventListener('keyup', contadorl);
+  function contadorl() {
+    var limite = document.getElementById('contador');
+    var conta = 140;
+    var valor = texArea.value.length;
+    var disminuir = conta - valor ; 
 
-      }
-      else if (newtweet > colorazul) {
-        azulNegro.style.background = 'blue';
-        boton.disabled = false;
-      }
-     else {
-       azulNegro.style.background = 'orange';
-   }
+    if (disminuir) {
+      limite.innerHTML = disminuir;           
+    } else {
+      limite.innerHTML = disminuir;  
+    }
 
- });
+    if (disminuir === 0) {
+        boton.disabled = true;
+        boton.style.background = ('white'); 
+        alert('!A LLEGADO AL LIMITE !');          
+      } 
+    else if (disminuir < 20 && disminuir > 10) {
+      limite.classList.add('colorrosado');
+      limite.classList.remove('coloramarillo');
+      limite.classList.remove('colorverde');
+    }
+    else if (disminuir <= 10 && disminuir > 0) {
+      limite.classList.remove('colorrosado');
+      limite.classList.add('coloramarillo');
+      limite.classList.remove('colorverde');
+     }
+    else if (disminuir < 0 ) {
+      boton.disabled = true;
+      boton.style.background = ('white');
+      limite.classList.add('colorverde');
+      limite.classList.remove('coloramarillo');
+    } 
+    else{
+      limite.classList.add('colorblack');
+      limite.classList.remove('coloramarillo');
+      limite.classList.remove('colorrosado');
+      limite.classList.remove('colorverde');
+    };   
+  
+  }
+};

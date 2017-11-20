@@ -6,9 +6,10 @@
 }
 
 body{
- background-image: url(https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2015/07/giphy-14.gif);
+ background-image: url(https://scontent.flim5-3.fna.fbcdn.net/v/t1.0-9/13882303_1399599423387212_3650627750374559054_n.jpg?oh=ec53f86e1934e16afe0da7b72d2bb48d&oe=5AAB844C);
  background-repeat: no-repeat;
  background-size: cover;
+ 
 }
  header{
    background: lightblue;
@@ -39,7 +40,7 @@ body{
 
 .publicando{
   background: rgb(204, 185, 204);
-  width: 480px;
+  width: 580px;
   height: 200px;  
   position: absolute;
   bottom: 48%;
@@ -48,7 +49,7 @@ body{
 }
 .area {
   background: rgb(204, 185, 204);
-  width: 473px;
+  width: 352px;
   height: 152px;
 }
 
@@ -56,23 +57,56 @@ body{
   width:50px;
   height: 20px;
   margin-left: 90%;
+  font-size: 25px; 
  
 }
 
- input  {
-  width:50px;
-  height: 20px;
-  background: rgb(3, 95, 138);
+ #button {
+  background: white;
+  width:75px;
+  height: 35px;
   margin-left: 10%;
-  font: size 25px;
+  font-size: 13px;
+  border-radius: 5px;
+  
     
  }
 
- .visualizando {
-   background: yellowgreen;
-   height: 130px;
+ #visualizando {
+   background: transparent;
+   height: 400PX;
    width: 50%;
    margin:auto;
    margin-top: 5%;
  }
 
+ .buttonVacio {
+   background: red;
+ }
+
+ .color {
+   background: lightskyblue;
+   margin: 10px;
+   height: 70px;
+   border-radius: 7px; 
+   text-align: justify;
+   
+
+ }
+  .colorblack {
+   color: black;
+ }
+
+ .colorrosado{
+   color: rgb(241, 6, 124);
+ }
+ .coloramarillo{
+   color: yellow;
+ }
+ 
+ .colorverde {
+   color: green;
+ }
+ 
+
+ 
