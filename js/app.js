@@ -1,52 +1,47 @@
 // el evento va a cargar cuando el objeto haya cargado
 window.onload = function() {
+
   var boton = document.getElementById('button');
   var texArea = document.getElementById('area');
   var visualizando = document.getElementById('visualizando');
-  
 
   texArea.addEventListener('input', agregando);
   function agregando() {
-    if (texArea.value === '') {
+    if (texArea.value.length == '') {
       boton.setAttribute('disabled', 'disabled');
-     
+      
     } else {
       boton.removeAttribute('disabled');
-      boton.style.background = 'green'; 
-      
-                    
+      boton.style.background = 'green';
     }
   }
 
-  boton.addEventListener('click', pasar); 
+  boton.addEventListener('click', pasar);
   function pasar() {
+    var hours = texArea.value + '<br>' + ' publicado a las ' + moment().format('lll');
     var creandodiv = document.createElement("div");
-    creandodiv.innerHTML = texArea.value;
-    visualizando.appendChild(creandodiv).classList.add("color");  
+    creandodiv.innerHTML = hours;
+    visualizando.appendChild(creandodiv).classList.add("color");
     texArea.value = '';
     boton.setAttribute('disabled', 'disabled');
-        
+
   }
- 
-  texArea.addEventListener('keyup', contadorl);
+
+  texArea.addEventListener('keydown', contadorl);
   function contadorl() {
     var limite = document.getElementById('contador');
     var conta = 140;
     var valor = texArea.value.length;
-    var disminuir = conta - valor ; 
+    var disminuir = (conta - valor);
 
     if (disminuir) {
-      limite.innerHTML = disminuir;           
+      limite.innerHTML = disminuir;
     } else {
-      limite.innerHTML = disminuir;  
+      limite.innerHTML = disminuir;
     }
 
-    if (disminuir === 0) {
-        boton.disabled = true;
-        boton.style.background = ('white'); 
-        alert('!A LLEGADO AL LIMITE !');          
-      } 
-    else if (disminuir < 20 && disminuir > 10) {
+
+    if (disminuir < 20 && disminuir > 10) {
       limite.classList.add('colorrosado');
       limite.classList.remove('coloramarillo');
       limite.classList.remove('colorverde');
@@ -55,19 +50,27 @@ window.onload = function() {
       limite.classList.remove('colorrosado');
       limite.classList.add('coloramarillo');
       limite.classList.remove('colorverde');
-     }
-    else if (disminuir < 0 ) {
-      boton.disabled = true;
-      boton.style.background = ('white');
+    }
+    else if (disminuir < 0) {
+      boton.style.background = 'red';
+      boton.setAttribute('disabled', 'disabled');
       limite.classList.add('colorverde');
       limite.classList.remove('coloramarillo');
-    } 
-    else{
+
+    }
+    else {
       limite.classList.add('colorblack');
       limite.classList.remove('coloramarillo');
       limite.classList.remove('colorrosado');
       limite.classList.remove('colorverde');
-    };   
-  
+    };
+
+  }
+
+  texArea.addEventListener('input', scroll);
+  function scroll(event) {
+    texArea.style.height = 'inherit';
+    texArea.style.height = texArea.scrollHeight + 'px';
+    texArea.style.overflow = 'hidden';
   }
 };
