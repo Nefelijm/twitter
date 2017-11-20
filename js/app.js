@@ -1,21 +1,21 @@
 // el evento va a cargar cuando el objeto haya cargado
 window.onload = function() {
-
+//Creando variables
   var boton = document.getElementById('button');
   var texArea = document.getElementById('area');
   var visualizando = document.getElementById('visualizando');
 
+//utilizando el evento input para habilitar y desahabilitar el boton
   texArea.addEventListener('input', agregando);
   function agregando() {
     if (texArea.value.length == '') {
-      boton.setAttribute('disabled', 'disabled');
-      
+      boton.setAttribute('disabled', 'disabled');      
     } else {
       boton.removeAttribute('disabled');
       boton.style.background = 'green';
     }
   }
-
+//utilizando el evento click para pasar al contenedor creando a la vez un div 
   boton.addEventListener('click', pasar);
   function pasar() {
     var hours = texArea.value + '<br>' + ' publicado a las ' + moment().format('lll');
@@ -24,9 +24,8 @@ window.onload = function() {
     visualizando.appendChild(creandodiv).classList.add("color");
     texArea.value = '';
     boton.setAttribute('disabled', 'disabled');
-
   }
-
+//utilizando el evento keydown para realizar el contador de manera descendiente
   texArea.addEventListener('keydown', contadorl);
   function contadorl() {
     var limite = document.getElementById('contador');
@@ -40,33 +39,28 @@ window.onload = function() {
       limite.innerHTML = disminuir;
     }
 
-
+//validando el contador
     if (disminuir < 20 && disminuir > 10) {
       limite.classList.add('colorrosado');
       limite.classList.remove('coloramarillo');
       limite.classList.remove('colorverde');
-    }
-    else if (disminuir <= 10 && disminuir > 0) {
+    } else if (disminuir <= 10 && disminuir > 0) {
       limite.classList.remove('colorrosado');
       limite.classList.add('coloramarillo');
       limite.classList.remove('colorverde');
-    }
-    else if (disminuir < 0) {
+    } else if (disminuir < 0) {
       boton.style.background = 'red';
       boton.setAttribute('disabled', 'disabled');
       limite.classList.add('colorverde');
       limite.classList.remove('coloramarillo');
-
-    }
-    else {
+    } else {
       limite.classList.add('colorblack');
       limite.classList.remove('coloramarillo');
       limite.classList.remove('colorrosado');
       limite.classList.remove('colorverde');
     };
-
   }
-
+//agrandando el texarea con el /n
   texArea.addEventListener('input', scroll);
   function scroll(event) {
     texArea.style.height = 'inherit';
